@@ -151,11 +151,21 @@ void Player::play(const Spotinetta::Track &track)
     // as the watcher's loaded signal is connected to play(track)
 }
 
+void Player::play(const QString &uri)
+{
+    play(sp::Link(uri).track());
+}
+
 void Player::enqueue(const Spotinetta::Track &track)
 {
     // Assumes track is loaded, might want to add watcher and enqueue when ready
     // or it may be better to add watch functionality to QueueModel
     m_queue->enqueue(track);
+}
+
+void Player::enqueue(const QString &uri)
+{
+    enqueue(sp::Link(uri).track());
 }
 
 void Player::seek(int position)
