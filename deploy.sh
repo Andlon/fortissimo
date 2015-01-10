@@ -1,5 +1,5 @@
 #!/bin/bash
-echo 'Deploying Sonetta...'
+echo 'Deploying Fortissimo...'
 
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DEBUGDIR="$SCRIPTDIR/debug"
