@@ -65,6 +65,9 @@ bool Application::initialize()
 {
     registerQmlTypes();
 
+    // Enable mouse
+    m_settings->setMouseEnabled(true);
+
     if (m_session->error() == sp::Error::Ok)
     {
         m_navigation.initialize(m_settings->lircDelay());
