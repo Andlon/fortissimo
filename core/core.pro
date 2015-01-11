@@ -100,4 +100,5 @@ DISTFILES += \
     assets/lib/echonest/echonest.js \
     assets/lib/util/url.js \
     assets/lib/Fortissimo.js \
-    assets/lib/util/util.js
+    assets/lib/util/util.js \
+    assets/interfaces/default/SpotifyImage.qml

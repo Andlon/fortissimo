@@ -7,6 +7,7 @@ namespace {
 const QString LIRCDELAY_SETTING =      QStringLiteral("input/lircdelay");
 const QString ENABLEMOUSE_SETTING =    QStringLiteral("input/enablemouse");
 const QString SEARCHISTORY_SETTING =   QStringLiteral("search/history");
+const QString TASTEPROFILE_SETTING =   QStringLiteral("echonest/profileId");
 
 }
 
@@ -48,6 +49,18 @@ void Settings::setLircDelay(int delay)
     }
 }
 
+QString Settings::profileId() const
+{
+    return m_profileId;
+}
+
+void Settings::setProfileId(const QString &id)
+{
+    m_profileId = id;
+    commitSetting(TASTEPROFILE_SETTING, m_profileId);
+    emit profileIdChanged();
+}
+
 QStringList Settings::loadSearchHistory()
 {
     QVariant history = m_settings.value(SEARCHISTORY_SETTING, QStringList());
@@ -71,6 +84,7 @@ void Settings::syncSettings()
 {
     m_mouseEnabled = m_settings.value(ENABLEMOUSE_SETTING, m_mouseEnabled).toBool();
     m_lircDelay = m_settings.value(LIRCDELAY_SETTING, m_lircDelay).toInt();
+    m_profileId = m_settings.value(TASTEPROFILE_SETTING, m_profileId).toString();
 }
 
 

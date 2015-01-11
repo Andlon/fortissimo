@@ -195,6 +195,7 @@ void Application::setupQuickEnvironment()
     m_view->engine()->rootContext()->setContextProperty("session", m_session.data());
     m_view->engine()->rootContext()->setContextProperty("search", m_search.data());
     m_view->engine()->rootContext()->setContextProperty("library", m_collection.data());
+    m_view->engine()->rootContext()->setContextProperty("settings", m_settings.data());
     m_view->engine()->addImportPath(applicationDir + QStringLiteral("/modules/"));
     m_view->setSource(QUrl::fromLocalFile(applicationDir + QStringLiteral("/interfaces/default/main.qml")));
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);

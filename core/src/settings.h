@@ -12,6 +12,7 @@ class Settings : public QObject {
 
     Q_PROPERTY(bool mouseEnabled READ mouseEnabled WRITE setMouseEnabled NOTIFY mouseEnabledChanged)
     Q_PROPERTY(int lircDelay READ lircDelay WRITE setLircDelay NOTIFY lircDelayChanged)
+    Q_PROPERTY(QString profileId READ profileId WRITE setProfileId NOTIFY profileIdChanged)
 public:
     explicit Settings(QObject * parent = 0);
 
@@ -21,12 +22,16 @@ public:
     int lircDelay() const;
     void setLircDelay(int delay);
 
+    QString profileId() const;
+    void setProfileId(const QString & id);
+
     QStringList loadSearchHistory();
     void commitSearchHistory(const QStringList & history);
 
 signals:
     void mouseEnabledChanged();
     void lircDelayChanged();
+    void profileIdChanged();
 
 private:
     void commitSetting(const QString & setting, const QVariant & value);
@@ -36,6 +41,7 @@ private:
 
     bool    m_mouseEnabled;
     int     m_lircDelay;
+    QString m_profileId;
 };
 
 }
