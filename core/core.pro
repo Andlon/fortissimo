@@ -61,7 +61,8 @@ HEADERS += \
     src/navigation/windowsnavigationfilter.h \
     src/navigation/navigationcontroller.h \
     src/quick/quickartistsynopsis.h \
-    src/quick/quickglobalstatemachine.h
+    src/quick/quickglobalstatemachine.h \
+    src/utilities/librarycollection.h
 
 SOURCES += \
     $$PWD/../appkey.c \
@@ -91,7 +92,12 @@ SOURCES += \
     src/navigation/lircclient.cpp \
     src/navigation/navigationcontroller.cpp \
     src/quick/quickartistsynopsis.cpp \
-    src/quick/quickglobalstatemachine.cpp
+    src/quick/quickglobalstatemachine.cpp \
+    src/utilities/librarycollection.cpp
 
 DISTFILES += \
-    assets/interfaces/default/main.qml
+    assets/interfaces/default/main.qml \
+    assets/lib/echonest/echonest.js \
+    assets/lib/util/url.js \
+    assets/lib/Fortissimo.js \
+    assets/lib/util/util.js

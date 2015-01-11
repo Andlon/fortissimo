@@ -45,6 +45,7 @@ Application::Application(QObject * parent)
 
     m_player.reset(new Player(m_session, m_output));
     m_search.reset(new SearchEngine(m_session.constCast<const sp::Session>(), m_settings));
+    m_collection.reset(new LibraryCollection(m_session.constCast<const sp::Session>(), this));
 
     connect(m_session.data(), &sp::Session::loggedOut, this, &Application::onLogout);
     connect(m_session.data(), &sp::Session::log, [] (const QString &msg) { qDebug() << msg; });
@@ -193,6 +194,7 @@ void Application::setupQuickEnvironment()
     m_view->engine()->rootContext()->setContextProperty("ui", m_ui.data());
     m_view->engine()->rootContext()->setContextProperty("session", m_session.data());
     m_view->engine()->rootContext()->setContextProperty("search", m_search.data());
+    m_view->engine()->rootContext()->setContextProperty("library", m_collection.data());
     m_view->engine()->addImportPath(applicationDir + QStringLiteral("/modules/"));
     m_view->setSource(QUrl::fromLocalFile(applicationDir + QStringLiteral("/interfaces/default/main.qml")));
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);

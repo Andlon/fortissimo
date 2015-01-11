@@ -14,6 +14,7 @@
 #include "settings.h"
 
 #include "utilities/pointers.h"
+#include "utilities/librarycollection.h"
 
 class QQuickView;
 
@@ -47,6 +48,7 @@ private:
     ObjectScopedPointer<Player>                 m_player;
     ObjectScopedPointer<UIStateCoordinator>     m_ui;
     ObjectScopedPointer<SearchEngine>           m_search;
+    ObjectScopedPointer<LibraryCollection>      m_collection;
 
     ObjectSharedPointer<AudioOutput>            m_output;
     ObjectSharedPointer<Settings>               m_settings;

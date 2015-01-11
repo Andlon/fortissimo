@@ -1,6 +1,6 @@
 import QtQuick 2.4
 import Sonetta 0.1
-import "../../config/credentials.js" as Credentials
+import "../../lib/Fortissimo.js" as Fortissimo
 
 Rectangle {
     width: 100
@@ -11,12 +11,15 @@ Rectangle {
     Connections {
         target: session
 
-        onLoggedIn: player.play("spotify:track:7BqmSGGjuVKdD3tQoPWteT")
+        onLoggedIn: {
+            library.runScan()
+            player.play("spotify:track:3bidbhpOYeV4knp8AIu8Xn")
+        }
         onLoginFailed: console.log("Login failed")
     }
 
     Component.onCompleted: {
-        session.login(Credentials.spotifyUsername, Credentials.spotifyPassword)
+        Fortissimo.initialize()
     }
 
     Rectangle {
@@ -27,10 +30,45 @@ Rectangle {
         color: "Yellow"
 
         MouseArea {
-            onClicked: player.next()
+            onClicked: Fortissimo.nextTrack()
             anchors.fill: parent
         }
-
     }
+
+    Column {
+        height: childrenRect.height
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            margins: 20
+        }
+
+        Text {
+            text: track.name
+            color: "#dddddd"
+            font.family: "Roboto Thin"
+            font.pointSize: 30
+        }
+
+        Text {
+            text: track.artistNames.join(', ')
+            color: "#dddddd"
+            font.family: "Roboto Thin"
+            font.pointSize: 26
+        }
+    }
+
+    TrackInfo {
+        id: track
+        track: player.track
+    }
+
+    Connections {
+        target: library
+
+        onIsCompleteChanged: console.log("Track count: " + library.trackList.length)
+    }
+
 }
 
