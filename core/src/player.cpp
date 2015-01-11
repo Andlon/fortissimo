@@ -4,7 +4,6 @@
 
 namespace sp = Spotinetta;
 
-
 namespace Sonetta {
 
 Player::Player(ObjectSharedPointer<Spotinetta::Session> session, ObjectSharedPointer<AudioOutput> output, QObject *parent)
@@ -118,9 +117,12 @@ void Player::transitionTrack()
     }
 }
 
-void Player::play(const Spotinetta::Track &track)
+bool Player::play(const Spotinetta::Track &track)
 {
     m_endOfTrack = false;
+
+    if (track.availability(m_session.data()) != sp::Track::Availability::Available)
+        return false;
 
     if (this->track().isValid())
     {
@@ -147,13 +149,15 @@ void Player::play(const Spotinetta::Track &track)
         }
     }
 
+    return true;
+
     // If track is not loaded, it will be played when it is loaded,
     // as the watcher's loaded signal is connected to play(track)
 }
 
-void Player::play(const QString &uri)
+bool Player::play(const QString &uri)
 {
-    play(sp::Link(uri).track());
+    return play(sp::Link(uri).track());
 }
 
 void Player::enqueue(const Spotinetta::Track &track)

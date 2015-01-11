@@ -48,8 +48,8 @@ signals:
     void playingChanged();
     
 public slots:
-    void play(const Spotinetta::Track &track);
-    void play(const QString & uri);
+    bool play(const Spotinetta::Track &track);
+    bool play(const QString & uri);
     void enqueue(const Spotinetta::Track &track);
     void enqueue(const QString & uri);
     void seek(int position);
