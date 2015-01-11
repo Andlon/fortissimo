@@ -101,4 +101,6 @@ DISTFILES += \
     assets/lib/util/url.js \
     assets/lib/Fortissimo.js \
     assets/lib/util/util.js \
-    assets/interfaces/default/SpotifyImage.qml
+    assets/interfaces/default/SpotifyImage.qml \
+    assets/lib/bmwcar/bmwcar.js \
+    assets/lib/util/stat.js

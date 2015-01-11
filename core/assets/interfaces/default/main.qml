@@ -1,6 +1,7 @@
 import QtQuick 2.4
 import Sonetta 0.1
 import "../../lib/Fortissimo.js" as Fortissimo
+import "../../lib/util/stat.js" as Stat
 
 Rectangle {
     width: 100
@@ -40,10 +41,6 @@ Rectangle {
         }
 
         width: height
-    }
-
-    Component.onCompleted: {
-        Fortissimo.initialize()
     }
 
     MouseArea {
@@ -95,5 +92,26 @@ Rectangle {
         track: player.track
     }
 
+    Timer {
+        id: sampleTimer
+        interval: 1000
+        repeat: true
+        running: false
+        onTriggered: Fortissimo.sample()
+    }
+
+    Timer {
+        id: steeringTimer
+        interval: 10000
+        repeat: true
+        running: false
+        onTriggered: Fortissimo.steer()
+    }
+
+    Component.onCompleted: {
+        Fortissimo.initialize()
+        sampleTimer.running = true
+        steeringTimer.running = true
+    }
 }
 

@@ -82,3 +82,12 @@ function createTasteProfile(apiKey, parameters, callback) {
         callback(Util.valueOfPath('response.id', obj))
     })
 }
+
+function steerDynamicPlaylist(apiKey, parameters) {
+    makeEchonestGetRequest(apiKey, '/api/v4/playlist/dynamic/steer', parameters, function (obj) {
+        var code = Util.valueOfPath('response.status.code', obj)
+        if (code === undefined || code !== 0) {
+            console.error('Failed to steer playlist. Response: ' + JSON.stringify(obj))
+        }
+    })
+}
