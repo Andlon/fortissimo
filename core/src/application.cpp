@@ -45,7 +45,7 @@ Application::Application(QObject * parent)
 
     m_player.reset(new Player(m_session, m_output));
     m_search.reset(new SearchEngine(m_session.constCast<const sp::Session>(), m_settings));
-    m_collection.reset(new LibraryCollection(m_session.constCast<const sp::Session>(), this));
+    m_collection.reset(new LibraryCollection(m_session.constCast<const sp::Session>()));
 
     connect(m_session.data(), &sp::Session::loggedOut, this, &Application::onLogout);
     connect(m_session.data(), &sp::Session::log, [] (const QString &msg) { qDebug() << msg; });
